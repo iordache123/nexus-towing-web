@@ -1,6 +1,6 @@
 'use client';
 
-import Spline from '@splinetool/react-spline';
+import dynamic from 'next/dynamic';
 import { PhoneCall, Wrench, Truck, ShieldCheck } from 'lucide-react';
 // Asigură-te că aceste componente există în folderul 'components'
 import HowItWorks from '../components/HowItWorks';
@@ -8,6 +8,15 @@ import Pricing from '../components/Pricing';
 import Contact from '../components/Contact';
 import FadeIn from '../components/FadeIn';
 import Fleet from '../components/Fleet';
+
+const SplineDynamic = dynamic(() => import('@splinetool/react-spline'), {
+  ssr: false,
+  loading: () => (
+    <div className="absolute inset-0 flex items-center justify-center bg-slate-900 z-0">
+      <div className="w-8 h-8 border-4 border-amber-500/30 border-t-amber-500 rounded-full animate-spin"></div>
+    </div>
+  ),
+});
 
 export default function Home() {
   return (
@@ -17,9 +26,10 @@ export default function Home() {
       <section className="relative h-screen flex flex-col justify-center overflow-hidden border-b border-slate-800">
         {/* Container pentru modelul 3D cu overlay pentru contrast */}
         <div className="absolute inset-0 z-0">
-          <Spline scene="https://prod.spline.design/Z0OSRghkI3zdtcWt/scene.splinecode" />
+          <SplineDynamic scene="https://prod.spline.design/Z0OSRghkI3zdtcWt/scene.splinecode" />
           <div className="absolute inset-0 bg-slate-900/65 z-10 pointer-events-none backdrop-blur-[1px]"></div>
         </div>
+
 
         <div className="relative z-20 container mx-auto px-6 lg:px-12 mt-16">
           <header className="mb-10 pointer-events-auto max-w-3xl">
