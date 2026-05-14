@@ -5,6 +5,8 @@ import "./globals.css";
 // Importăm componentele noastre globale
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import MobileCTA from "../components/MobileCTA";
+import FilmGrain from "../components/FilmGrain"; 
 
 const inter = Inter({ subsets: ["latin"], display: 'swap' });
 
@@ -20,13 +22,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ro" className="scroll-smooth">
-      <body className={`${inter.className} bg-slate-900 text-slate-50 antialiased`}>
+      {/* Am adăugat 'relative' pe body */}
+      <body className={`${inter.className} bg-slate-900 text-slate-50 antialiased relative`}>
         <Navbar />
-        {/* Adăugăm un padding-top pentru a nu ascunde conținutul sub navbar-ul fixed */}
-        <div className="pt-20"> 
+        
+        {/* 2. MODIFICARE AICI: Am adăugat pb-24 md:pb-0 pentru a face loc butonului pe mobil */}
+        <div className="pt-20 pb-24 md:pb-0"> 
           {children}
         </div>
+        
         <Footer />
+        
+        {/* 3. INJECȚIA AICI: Componenta de urgență stă la nivelul layout-ului */}
+        <MobileCTA />
+        <FilmGrain /> 
       </body>
     </html>
   );

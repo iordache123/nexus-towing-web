@@ -7,6 +7,7 @@ import HowItWorks from '../components/HowItWorks';
 import Pricing from '../components/Pricing';
 import Contact from '../components/Contact';
 import FadeIn from '../components/FadeIn';
+import Fleet from '../components/Fleet';
 
 export default function Home() {
   return (
@@ -103,11 +104,16 @@ export default function Home() {
         </div>
       </section>
 
-  {/* 3. EXTERNAL COMPONENTS (Modulele de Conversie Animate) */}
+{/* 3. EXTERNAL COMPONENTS (Modulele de Conversie Animate) */}
       <FadeIn direction="up" delay={0.2}>
         <HowItWorks />
       </FadeIn>
       
+      {/* SECȚIUNEA NOUĂ FLOTA */}
+      <FadeIn direction="up" delay={0.3}>
+        <Fleet />
+      </FadeIn>
+
       <FadeIn direction="up" delay={0.4}>
         <Pricing />
       </FadeIn>
