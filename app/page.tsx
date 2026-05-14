@@ -17,7 +17,7 @@ export default function Home() {
       <section className="relative h-screen flex flex-col justify-center overflow-hidden border-b border-slate-800">
         {/* Container pentru modelul 3D cu overlay pentru contrast */}
         <div className="absolute inset-0 z-0">
-          <Spline scene="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode" />
+          <Spline scene="https://prod.spline.design/Z0OSRghkI3zdtcWt/scene.splinecode" />
           <div className="absolute inset-0 bg-slate-900/65 z-10 pointer-events-none backdrop-blur-[1px]"></div>
         </div>
 
