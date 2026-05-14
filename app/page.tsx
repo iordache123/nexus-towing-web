@@ -8,6 +8,7 @@ import Pricing from '../components/Pricing';
 import Contact from '../components/Contact';
 import FadeIn from '../components/FadeIn';
 import Fleet from '../components/Fleet';
+import TrustMarquee from '../components/TrustMarquee';
 
 const SplineDynamic = dynamic(() => import('@splinetool/react-spline'), {
   ssr: false,
@@ -26,13 +27,15 @@ export default function Home() {
       <section className="relative h-screen flex flex-col justify-center overflow-hidden border-b border-slate-800">
         {/* Container pentru modelul 3D cu overlay pentru contrast */}
         <div className="absolute inset-0 z-0">
-          <SplineDynamic scene="https://prod.spline.design/Z0OSRghkI3zdtcWt/scene.splinecode" />
+          <SplineDynamic scene="https://prod.spline.design/Z0OSRghkI3zdtcWt/scene.splinecode" style={{ pointerEvents: 'none' }}  />
           <div className="absolute inset-0 bg-slate-900/65 z-10 pointer-events-none backdrop-blur-[1px]"></div>
         </div>
 
 
-        <div className="relative z-20 container mx-auto px-6 lg:px-12 mt-16">
-          <header className="mb-10 pointer-events-auto max-w-3xl">
+<div className="relative z-20 container mx-auto px-6 lg:px-12 mt-16">
+          <header className="mb-10 pointer-events-auto max-w-3xl relative">
+            
+            {/* 1. Badge Disponibilitate */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 font-bold tracking-widest uppercase text-xs mb-6">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
@@ -40,31 +43,68 @@ export default function Home() {
               </span>
               Disponibil 24/7 în București & Ilfov
             </div>
+
+            {/* 2. Ambient Glow (Acum este plasat semantic corect, în spatele textului) */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[300px] bg-amber-500/20 blur-[100px] rounded-full pointer-events-none -z-10"></div>
+
+            {/* 3. Titlul Principal H1 (Gradient Premium) */}
+            <FadeIn direction="up">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-6">
+                <span className="text-white">Asistență</span>{" "}
+                <span className="bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">
+                  Non-Stop.
+                </span>
+              </h1>
+            </FadeIn>
+
+            {/* 4. Subtitlul (Promisiunea de Business) */}
+            <FadeIn direction="up" delay={0.2}>
+              <p className="text-lg md:text-xl text-slate-300 max-w-2xl font-medium leading-relaxed">
+                Tractări auto premium și asistență rutieră în București și Ilfov. 
+                Intervenție garantată în sub <span className="text-amber-500 font-bold">30 de minute</span>.
+              </p>
+            </FadeIn>
             
-            <h1 className="text-5xl md:text-7xl font-extrabold leading-[1.1] tracking-tight">
-              Tractări Auto <br /> 
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-600">Fără Compromisuri.</span>
-            </h1>
-            
-            <p className="mt-6 text-lg md:text-xl text-slate-300 max-w-2xl leading-relaxed">
-              Intervenție rapidă în sub 30 de minute. Flotă modernă, personal calificat și asigurare integrală pentru siguranța mașinii tale.
-            </p>
           </header>
 
-          <div className="pointer-events-auto flex flex-col sm:flex-row gap-4">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[300px] bg-amber-500/20 blur-[100px] rounded-full pointer-events-none -z-10"></div>
+          
+          <FadeIn direction="up">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-6">
+              <span className="text-white">Asistență</span>{" "}
+              {/* Gradient pe cuvântul cheie */}
+              <span className="bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">
+                Non-Stop.
+              </span>
+            </h1>
+          </FadeIn>
+          
+          <FadeIn direction="up" delay={0.2}>
+            <p className="text-lg md:text-xl text-slate-300 max-w-2xl font-medium leading-relaxed">
+              Tractări auto premium și asistență rutieră în București și Ilfov. 
+              Intervenție garantată în sub <span className="text-amber-500 font-bold">30 de minute</span>.
+            </p>
+          </FadeIn>
+
+<div className="pointer-events-auto flex flex-col sm:flex-row gap-4 mt-8 w-full md:w-auto">
+            
+            {/* 1. Butonul Primar (Ascuns pe mobil folosind 'hidden md:flex', vizibil pe desktop) */}
             <a 
               href="tel:+40700123456" 
-              className="inline-flex items-center justify-center gap-3 bg-amber-500 hover:bg-amber-400 text-slate-900 px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_40px_-10px_rgba(245,158,11,0.6)]"
+              className="hidden md:flex items-center justify-center gap-3 bg-amber-500 hover:bg-amber-400 text-slate-900 px-8 py-4 rounded-2xl font-bold text-lg shadow-[0_0_30px_-10px_rgba(245,158,11,0.5)] transition-transform hover:scale-105"
             >
-              <PhoneCall size={24} />
+              <PhoneCall size={24} className="animate-pulse" />
               URGENȚĂ: 0700 123 456
             </a>
+
+            {/* 2. Butonul Secundar (Afișat pe mobil lat cât tot ecranul 'w-full', normal pe desktop 'md:w-auto') */}
             <a 
               href="#servicii" 
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full font-bold text-lg text-white bg-slate-800/50 hover:bg-slate-800 border border-slate-700 backdrop-blur-md transition-colors"
+              className="flex items-center justify-center bg-slate-800/80 hover:bg-slate-700 backdrop-blur-md border border-slate-700 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all w-full md:w-auto"
             >
               Vezi Serviciile
             </a>
+            
           </div>
         </div>
       </section>

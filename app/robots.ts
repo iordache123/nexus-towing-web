@@ -1,12 +1,12 @@
 import { MetadataRoute } from 'next';
 
-export default function robots(): MetadataRoute.Sitemap {
+export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: '*',
       allow: '/',
-      // disallow: '/admin', // Exemplu de pagină pe care o ascunzi de Google
+      // disallow: '/admin', 
     },
-    sitemap: 'https://site-ul-tau-de-tractari.ro/sitemap.xml',
+    sitemap: 'https://nexus-towing-web.vercel.app/sitemap.xml',
   };
 }
