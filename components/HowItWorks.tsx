@@ -23,28 +23,27 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section id="proces" className="py-24 bg-slate-900 border-t border-slate-800/50">
+    <section id="proces" className="scroll-mt-24 py-24 bg-zinc-900 border-t border-zinc-800/50">
       <div className="container mx-auto px-6 lg:px-12">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Cum Funcționează</h2>
-          <p className="text-slate-400 max-w-2xl mx-auto">Un proces simplificat, creat pentru a te scoate din încurcătură cât mai repede și mai sigur posibil.</p>
+          <p className="text-zinc-400 max-w-2xl mx-auto">Un proces simplificat, creat pentru a te scoate din încurcătură cât mai repede și mai sigur posibil.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-          {/* Linie conectoare ascunsă pe mobil, vizibilă pe desktop */}
-          <div className="hidden md:block absolute top-12 left-[15%] right-[15%] h-0.5 bg-gradient-to-r from-slate-800 via-amber-500/50 to-slate-800 z-0"></div>
+          <div className="hidden md:block absolute top-12 left-[15%] right-[15%] h-0.5 bg-gradient-to-r from-zinc-800 via-amber-500/50 to-zinc-800 z-0"></div>
 
           {steps.map((step) => (
             <div key={step.id} className="relative z-10 flex flex-col items-center text-center group">
-              <div className="w-24 h-24 bg-slate-950 border-2 border-slate-800 rounded-full flex items-center justify-center mb-6 group-hover:border-amber-500 transition-colors duration-300 relative">
+              <div className="w-24 h-24 bg-zinc-950 border-2 border-zinc-800 rounded-full flex items-center justify-center mb-6 group-hover:border-amber-500 transition-colors duration-300 relative">
                 <div className="absolute inset-0 bg-amber-500/10 rounded-full scale-0 group-hover:scale-100 transition-transform duration-500"></div>
                 <div className="text-amber-500 z-10">{step.icon}</div>
-                <div className="absolute -top-3 -right-3 w-8 h-8 bg-amber-500 text-slate-900 font-bold rounded-full flex items-center justify-center text-sm shadow-lg">
+                <div className="absolute -top-3 -right-3 w-8 h-8 bg-amber-500 text-zinc-900 font-bold rounded-full flex items-center justify-center text-sm shadow-lg">
                   {step.id}
                 </div>
               </div>
               <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
-              <p className="text-slate-400 leading-relaxed">{step.description}</p>
+              <p className="text-zinc-400 leading-relaxed">{step.description}</p>
             </div>
           ))}
         </div>

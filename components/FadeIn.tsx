@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion, type Transition } from 'framer-motion';
 import { ReactNode } from 'react';
 
 interface FadeInProps {
@@ -10,30 +10,36 @@ interface FadeInProps {
 }
 
 export default function FadeIn({ children, delay = 0, direction = 'up' }: FadeInProps) {
+  const shouldReduceMotion = useReducedMotion();
+  const cinematicEase: [number, number, number, number] = [0.21, 0.47, 0.32, 0.98];
   const directions = {
     up: { y: 40, x: 0 },
     down: { y: -40, x: 0 },
     left: { x: 40, y: 0 },
     right: { x: -40, y: 0 },
   };
+  const initialOffset = shouldReduceMotion ? { x: 0, y: 0 } : directions[direction];
+  const transition: Transition = shouldReduceMotion
+    ? { duration: 0.2, delay: 0 }
+    : {
+        duration: 0.7,
+        delay,
+        ease: cinematicEase,
+      };
 
   return (
     <motion.div
-      initial={{ 
-        opacity: 0, 
-        ...directions[direction] 
+      initial={{
+        opacity: 0,
+        ...initialOffset,
       }}
-      whileInView={{ 
-        opacity: 1, 
-        x: 0, 
-        y: 0 
+      whileInView={{
+        opacity: 1,
+        x: 0,
+        y: 0,
       }}
-      viewport={{ once: true, margin: "-10%" }}
-      transition={{
-        duration: 0.7,
-        delay: delay,
-        ease: [0.21, 0.47, 0.32, 0.98], // Curbă bezier pentru o mișcare "Apple-like"
-      }}
+      viewport={{ once: true, margin: shouldReduceMotion ? "0%" : "-10%" }}
+      transition={transition}
     >
       {children}
     </motion.div>
